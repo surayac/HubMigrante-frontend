@@ -14,13 +14,17 @@ export default function NavBar() {
           className="h-30 md:h-20 object-contain" />
 
         <div className="flex items-center gap-3 md:gap-5">
-          <button className="text-white text-sm md:text-base hover:text-pink-500 transition-colors cursor-pointer">
+          <Link
+            to="/login"
+            className="text-white text-sm md:text-base hover:text-pink-500 transition-colors cursor-pointer"
+          >
             Login
-          </button>
+          </Link>
 
-          <button className="text-white text-sm md:text-base hover:text-pink-500 transition-colors cursor-pointer">
-          Register
-          </button>
+          <Link
+            to="/register" className="text-white text-sm md:text-base hover:text-pink-500 transition-colors cursor-pointer">
+            Register
+          </Link>
 
         </div>
       </div>
