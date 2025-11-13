@@ -6,28 +6,21 @@ export default function NavBar() {
 
   return (
 
-    <nav className="w-screen fixed top-0 left-0 bg-white shadow-md z-50">
+    <nav className="w-screen fixed top-0 left-0 bg-gray-900">
+      <div className="flex items-center justify-between px-6 md:px-10 py-4 h-[50px]">
+        <img
+          src="/src/assets/img/logo.png"
+          alt="Hub Migrante Logo"
+          className="h-30 md:h-20 object-contain" />
 
-      <div className="flex items-center justify-between px-6 md:px-10 py-4 h-[70px]">
+        <div className="flex items-center gap-3 md:gap-5">
+          <button className="text-white text-sm md:text-base hover:text-pink-500 transition-colors cursor-pointer">
+            Login
+          </button>
 
-       
-
-          <img
-            src="/src/assets/img/logo.png"
-            alt="Hub Migrante Logo"
-            className="h-10 md:h-20 object-contain"
-          />
-
-    
-
-        <div className="flex items-center gap-3 md:gap-5">     
-            <button className="text-gray-800 text-sm md:text-base hover:text-(--color-primary-main) transition-colors">
-              Login
-            </button>             
-
-            <button className="bg-linear-to-br from-orange-700 via-orange-600 to-red-600 hover:bg-red-600 text-white text-sm md:text-base font-semibold py-2 px-4 rounded-lg shadow-md transition-all">
-              Register
-            </button>    
+          <button className="text-white text-sm md:text-base hover:text-pink-500 transition-colors cursor-pointer">
+          Register
+          </button>
 
         </div>
       </div>

@@ -1,12 +1,18 @@
 import Hero from "../components/sections/Hero";
 
 export default function Home() {
+
+//declarando hook - importados a primer nivel
+ //const { data, isLoading, error } = useGetUser();
+
   return (
 
     <div>
-      <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <main>
         <Hero />
       </main>
     </div>
   );
+
 }
+
