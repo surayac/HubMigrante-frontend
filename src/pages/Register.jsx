@@ -86,16 +86,17 @@ function Register() {
 
                 <section className="flex justify-between mt-4 gap-4">
 
-                    <a
+                    <button
+                        type="submit"
                         href="/register"
-                        className="flex-1 text-center bg-gray-900 text-white font-semibold py-2 rounded-lg hover:bg-gray-700 transition"
+                        className="flex-1 text-center bg-gray-900 text-white font-semibold py-2 rounded-lg hover:bg-gray-700 transition cursor-pointer"
                     >
                         Register
-                    </a>
+                    </button>
 
                     <a
                         href="/login"
-                        className="flex-1 text-center bg-gray-300 text-gray-800 font-semibold py-2 rounded-lg hover:bg-gray-400 transition"
+                        className="flex-1 text-center bg-gray-300 text-gray-800 font-semibold py-2 rounded-lg hover:bg-gray-400 transition cursor-pointer"
                     >
                         Login
                     </a>
