@@ -10,19 +10,22 @@ export default function Hero() {
 
   return (
     <section
-      className="relative w-full min-h-screen text-gray-900 pt-[70px] flex flex-col items-center justify-center"
+      className="relative w-full min-h-screen text-gray-900 pt-[10px] flex flex-col items-center justify-center"
       role="region"
       aria-labelledby="hero-heading"
     >
 
-      <h1
-        id="hero-heading"
-        className="text-4xl lg:text-6xl font-extrabold mb-10 text-center"
-      >
-        Hub Migrante
-      </h1>
+      <section className="w-full bg-gray-200/80 text-center py-9 flex flex-col items-center justify-center mb-6">
+        <h1
+          id="hero-heading"
+          className="text-4xl lg:text-6xl font-extrabold tracking-tight"
+        >
+          <span style={{ color: "#4C92E7" }}>HUB</span>
+          <span className="text-gray-900">Migrante</span>
+        </h1>
+      </section>
 
-      <section className="flex flex-wrap justify-center items-center gap-3 mb-8">
+      <section className="flex flex-wrap justify-center items-center gap-3 mb-6">
         <img
           src="/src/assets/img/image1.png"
           alt="View of Barcelona from the Mountain"
@@ -42,7 +45,7 @@ export default function Hero() {
 
       <section className="w-full bg-gray-200/70 text-center py-8 flex flex-col items-center justify-center">
         <p className="text-xl font-bold">
-        Plan your move. Simplify your journey.
+          Plan your move. Simplify your journey.
         </p>
         <p className="text-base md:text-xl max-w-3xl text-gray-800 mb-5 leading-relaxed px-4">
           Moving abroad is exciting — but it can also be overwhelming.
