@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import api from "../services/ApiUser";
 import toast from "react-hot-toast";
 import MyToast from "../components/MyToast";
+import { useAuth } from "../context/AuthContext";
 
 function Login() {
+    const {login} = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -19,7 +21,7 @@ function Login() {
 
             const token = response.data.token;
 
-            localStorage.setItem("token", token);
+            login(token);
 
             toast.custom(
                 <MyToast
@@ -30,7 +32,7 @@ function Login() {
             );
 
             setTimeout(() => {
-                window.location.href = "/";
+                window.location.href = "/profile";
             }, 1200);
 
 

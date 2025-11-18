@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import api from "../services/ApiUser";
-import { getSimulationsByUser } from "../services/ApiSimulation";
 
 export default function Profile() {
 
@@ -13,7 +12,10 @@ export default function Profile() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (!token) return;
+        if (!token) {
+            setLoading(false); // Garante que o estado de carregamento termine.
+            return;
+        }
 
         async function loadUser() {
             try {
@@ -21,18 +23,20 @@ export default function Profile() {
                 setUser(res.data);
             } catch (err) {
                 console.error("Error loading user:", err);
+                setError("Failed to load user data. Please log in again.");
+                setLoading(false);
             }
         }
 
-        loadUser();
-    }, [token]);
+      //  loadUser();
+   // }, [token]);
 
-    useEffect(() => {
-        if (!user) return;
+   // useEffect(() => {
+      //  if (!user) return;
 
         async function loadSimulations() {
             try {
-                const res = await api.get(`/api/v1/simulations/user/${user.id}`);
+                const res = await api.get("/api/v1/simulations/me");
                 setSimulations(res.data);
             } catch (err) {
                 console.error("Error loading simulations:", err);
@@ -41,8 +45,10 @@ export default function Profile() {
             }
         }
 
+        loadUser();
         loadSimulations();
-    }, [user]);
+      
+    }, [token]);
 
     if (!token) return <p className="text-center mt-10">You are not logged in.</p>;
     if (loading) return <p className="text-center mt-10">Loading…</p>;
@@ -80,11 +86,11 @@ export default function Profile() {
                     {!loading && simulations.length > 0 && (
                         <div className="mt-6 grid md:grid-cols-2 gap-6 w-full">
                             {simulations.map((sim) => (
-                                <div key={sim.id} className="bg-white rounded-xl p-5 shadow-sm border">
+                                <div key={sim.simulationId} className="bg-white rounded-xl p-5 shadow-sm border">
                                     <h4 className="font-semibold text-gray-900 mb-1">
-                                        {sim.title}
+                                        {sim.visaType}
                                     </h4>
-                                    <p className="text-gray-700">{sim.description}</p>
+                                    <p className="text-gray-700">Created At: {sim.createdAt}</p>
                                 </div>
                             ))}
                         </div>

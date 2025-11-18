@@ -1,5 +1,5 @@
 export async function getSimulationsByUser(userId, token) {
-    const response = await fetch(`http://localhost:3000/api/v1/simulations/${userId}`, {
+    const response = await fetch(`http://localhost:8080/api/v1/simulations/${userId}`, {
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}` 
