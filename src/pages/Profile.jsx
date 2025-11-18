@@ -1,21 +1,27 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import api from "../services/ApiUser";
-import { Trash2 } from "lucide-react";
+import { Trash2, LogOut, Edit } from "lucide-react";
+import EditProfileForm from "../components/EditProfileForm";
 
 
 export default function Profile() {
 
-    const { token } = useAuth();
+    const { token, logout } = useAuth();
 
     const [user, setUser] = useState(null);
     const [simulations, setSimulations] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const [editing, setEditing] = useState(false);
+    const [newName, setNewName] = useState("");
+    const [newEmail, setNewEmail] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+
     useEffect(() => {
         if (!token) {
-            setLoading(false); 
+            setLoading(false);
             return;
         }
 
@@ -54,63 +60,106 @@ export default function Profile() {
 
             <div className="max-w-3xl mx-auto mt-20 px-6 pb-16 flex flex-col items-center gap-10">
 
-                {/* CARD 1 */}
                 <div className="w-full bg-gray-100/80 rounded-2xl p-6 shadow-md flex flex-col items-center text-center">
                     <h2 className="text-2xl font-bold tracking-tight text-gray-900">
                         Welcome back, {user?.name || "User"}!
                     </h2>
                     <p className="text-gray-600">{user?.email}</p>
 
-                    <button className="mt-6 bg-gray-900 text-white px-6 py-2 rounded-xl font-medium shadow-md transition-all hover:scale-105 hover:bg-gray-800 cursor-pointer">
-                        Edit Profile
-                    </button>
-                </div>
+                    <div className="flex gap-3 mt-6">
 
-                {/* CARD 2 */}
-                <div className="w-full bg-gray-100/80 rounded-2xl p-8 shadow-md flex flex-col items-center">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">
-                        My Simulations
-                    </h3>
+                        <button
+                            onClick={() => {
+                                setNewName(user?.name || "");
+                                setNewEmail(user?.email || "");
+                                setNewPassword("");
+                                setEditing(true);
+                            }}
+                            className="bg-gray-900 text-white px-6 py-2 rounded-xl font-medium shadow-md transition hover:bg-gray-800 flex items-center gap-2 cursor-pointer"
+                        >
+                            <Edit size={18} /> Edit Profile
+                        </button>
 
-                    {loading && <p className="text-gray-600">Loading...</p>}
-                    {error && <p className="text-red-500">{error}</p>}
+                        <button
+                            onClick={() => {
+                                logout();
+                                window.location.href = "/login";
+                            }}
+                            className="bg-red-600 text-white px-5 py-2 rounded-xl font-medium shadow-md transition hover:bg-red-700 flex items-center gap-2 cursor-pointer"
+                        >
+                            <LogOut size={18} /> Logout
+                        </button>
 
-                    {!loading && simulations.length === 0 && (
-                        <p className="text-gray-700">You haven't created any simulations yet.</p>
-                    )}
+                    </div>
 
-                    {!loading && simulations.length > 0 && (
-                        <div className="mt-6 grid md:grid-cols-2 gap-6 w-full">
-                            {simulations.map((sim) => (
-                                <div key={sim.simulationId} className="bg-white rounded-xl p-5 shadow-sm border">
-                                    <button
+                    <button
+                        onClick={async () => {
+                            if (!confirm("Are you sure you want to delete your account?")) return;
 
-                                        style={{
-                                            background: "none",
-                                            border: "none",
-                                            cursor: "pointer",
-                                            padding: "8px",
-                                        }}
-                                        aria-label="Delete"
-                                    >
-                                        <Trash2 size={24}
-                                            className="stroke-[#021746] hover:stroke-blue-600 transition-transform duration-200 transform hover:scale-110 cursor-pointer"
-                                            strokeWidth={2} />                                    </button>
-                                    <h4 className="font-semibold text-gray-900 mb-1">
-                                        {sim.visaType}
-                                    </h4>
-                                    <p className="text-gray-700">Created At: {sim.createdAt}</p>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-
-                    <button className="mt-8 bg-gray-900 text-white px-7 py-3 rounded-xl font-medium shadow-md transition-all hover:scale-105 hover:bg-gray-800 cursor-pointer mx-auto">
-                        Create Simulation
-                    </button>
-                </div>
-
+                            try {
+                                await api.delete("/api/v1/users/me");
+                                logout();
+                                window.location.href = "/register";
+                            } catch (err) {
+                                console.error("Error deleting account:", err);
+                                alert("Could not delete your account.");
+                            }
+                        }}
+                        className="mt-4 text-sm text-red-600 underline cursor-pointer"
+                    >
+                        Delete Account
+                    </button>              
             </div>
-        </section>
+
+            {editing && (
+                <EditProfileForm
+                user={user}
+                onClose={() => setEditing(false)}/>)}
+
+            <div className="w-full bg-gray-100/80 rounded-2xl p-8 shadow-md flex flex-col items-center">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">
+                    My Simulations
+                </h3>
+
+                {loading && <p className="text-gray-600">Loading...</p>}
+                {error && <p className="text-red-500">{error}</p>}
+
+                {!loading && simulations.length === 0 && (
+                    <p className="text-gray-700">You haven't created any simulations yet.</p>
+                )}
+
+                {!loading && simulations.length > 0 && (
+                    <div className="mt-6 grid md:grid-cols-2 gap-6 w-full">
+                        {simulations.map((sim) => (
+                            <div key={sim.simulationId} className="bg-white rounded-xl p-5 shadow-sm border">
+                                <button
+
+                                    style={{
+                                        background: "none",
+                                        border: "none",
+                                        cursor: "pointer",
+                                        padding: "8px",
+                                    }}
+                                    aria-label="Delete"
+                                >
+                                    <Trash2 size={24}
+                                        className="stroke-[#021746] hover:stroke-blue-600 transition-transform duration-200 transform hover:scale-110 cursor-pointer"
+                                        strokeWidth={2} />                                    </button>
+                                <h4 className="font-semibold text-gray-900 mb-1">
+                                    {sim.visaType}
+                                </h4>
+                                <p className="text-gray-700">Created At: {sim.createdAt}</p>
+                            </div>
+                        ))}
+                    </div>
+                )}
+
+                <button className="mt-8 bg-gray-900 text-white px-7 py-3 rounded-xl font-medium shadow-md transition-all hover:scale-105 hover:bg-gray-800 cursor-pointer mx-auto">
+                    Create Simulation
+                </button>
+            </div>
+
+        </div>
+        </section >
     );
 }
