@@ -3,7 +3,10 @@ import { useAuth } from "../context/AuthContext";
 import api from "../services/ApiUser";
 import { Trash2, LogOut, Edit } from "lucide-react";
 import EditProfileForm from "../components/EditProfileForm";
-
+import { deleteMyUser } from "../services/UserService";
+import toast from "react-hot-toast";
+import MyToast from "../components/MyToast";
+import ConfirmToast from "../components/ConfirmToast";
 
 export default function Profile() {
 
@@ -93,73 +96,97 @@ export default function Profile() {
                     </div>
 
                     <button
-                        onClick={async () => {
-                            if (!confirm("Are you sure you want to delete your account?")) return;
+                        onClick={() => {
+                            toast.custom((t) => (
+                                <ConfirmToast
+                                    message="Are you sure you want to delete your account?"
+                                    onConfirm={async () => {
+                                        try {
+                                            await deleteMyUser();
+                                            logout();
 
-                            try {
-                                await api.delete("/api/v1/users/me");
-                                logout();
-                                window.location.href = "/register";
-                            } catch (err) {
-                                console.error("Error deleting account:", err);
-                                alert("Could not delete your account.");
-                            }
+                                            toast.custom(
+                                                <MyToast
+                                                    title="Account deleted"
+                                                    message="Your account was removed successfully."
+                                                    type="success"
+                                                />
+                                            );
+
+                                            setTimeout(() => {
+                                                window.location.href = "/register";
+                                            }, 1200);
+
+                                        } catch (err) {
+                                            console.error("Error deleting account:", err);
+
+                                            toast.custom(
+                                                <MyToast
+                                                    title="Deletion failed"
+                                                    message="Could not delete your account."
+                                                    type="error"
+                                                />
+                                            );
+                                        }
+                                    }}
+                                />
+                            ));
                         }}
                         className="mt-4 text-sm text-red-600 underline cursor-pointer"
                     >
                         Delete Account
-                    </button>              
+                    </button>
+                </div>
+
+                {editing && (
+                    <EditProfileForm
+                        user={user}
+                        onClose={() => setEditing(false)} />)}
+
+                <div className="w-full bg-gray-100/80 rounded-2xl p-8 shadow-md flex flex-col items-center">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">
+                        My Simulations
+                    </h3>
+
+                    {loading && <p className="text-gray-600">Loading...</p>}
+                    {error && <p className="text-red-500">{error}</p>}
+
+                    {!loading && simulations.length === 0 && (
+                        <p className="text-gray-700">You haven't created any simulations yet.</p>
+                    )}
+
+                    {!loading && simulations.length > 0 && (
+                        <div className="mt-6 grid md:grid-cols-2 gap-6 w-full">
+                            {simulations.map((sim) => (
+                                <div key={sim.simulationId} className="bg-white rounded-xl p-5 shadow-sm border">
+                                    <button
+
+                                        style={{
+                                            background: "none",
+                                            border: "none",
+                                            cursor: "pointer",
+                                            padding: "8px",
+                                        }}
+                                        aria-label="Delete"
+                                    >
+                                        <Trash2 size={24}
+                                            className="stroke-[#021746] hover:stroke-blue-600 transition-transform duration-200 transform hover:scale-110 cursor-pointer"
+                                            strokeWidth={2} />                                    </button>
+                                    <h4 className="font-semibold text-gray-900 mb-1">
+                                        {sim.visaType}
+                                    </h4>
+                                    <p className="text-gray-700">Created At: {sim.createdAt}</p>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    <button className="mt-8 bg-gray-900 text-white px-7 py-3 rounded-xl font-medium shadow-md transition-all hover:scale-105 hover:bg-gray-800 cursor-pointer mx-auto">
+                        Create Simulation
+                    </button>
+                </div>
+
             </div>
-
-            {editing && (
-                <EditProfileForm
-                user={user}
-                onClose={() => setEditing(false)}/>)}
-
-            <div className="w-full bg-gray-100/80 rounded-2xl p-8 shadow-md flex flex-col items-center">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">
-                    My Simulations
-                </h3>
-
-                {loading && <p className="text-gray-600">Loading...</p>}
-                {error && <p className="text-red-500">{error}</p>}
-
-                {!loading && simulations.length === 0 && (
-                    <p className="text-gray-700">You haven't created any simulations yet.</p>
-                )}
-
-                {!loading && simulations.length > 0 && (
-                    <div className="mt-6 grid md:grid-cols-2 gap-6 w-full">
-                        {simulations.map((sim) => (
-                            <div key={sim.simulationId} className="bg-white rounded-xl p-5 shadow-sm border">
-                                <button
-
-                                    style={{
-                                        background: "none",
-                                        border: "none",
-                                        cursor: "pointer",
-                                        padding: "8px",
-                                    }}
-                                    aria-label="Delete"
-                                >
-                                    <Trash2 size={24}
-                                        className="stroke-[#021746] hover:stroke-blue-600 transition-transform duration-200 transform hover:scale-110 cursor-pointer"
-                                        strokeWidth={2} />                                    </button>
-                                <h4 className="font-semibold text-gray-900 mb-1">
-                                    {sim.visaType}
-                                </h4>
-                                <p className="text-gray-700">Created At: {sim.createdAt}</p>
-                            </div>
-                        ))}
-                    </div>
-                )}
-
-                <button className="mt-8 bg-gray-900 text-white px-7 py-3 rounded-xl font-medium shadow-md transition-all hover:scale-105 hover:bg-gray-800 cursor-pointer mx-auto">
-                    Create Simulation
-                </button>
-            </div>
-
-        </div>
         </section >
     );
 }
