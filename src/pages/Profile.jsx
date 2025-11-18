@@ -15,7 +15,7 @@ export default function Profile() {
 
     useEffect(() => {
         if (!token) {
-            setLoading(false); // Garante que o estado de carregamento termine.
+            setLoading(false); 
             return;
         }
 
@@ -29,12 +29,6 @@ export default function Profile() {
                 setLoading(false);
             }
         }
-
-        //  loadUser();
-        // }, [token]);
-
-        // useEffect(() => {
-        //  if (!user) return;
 
         async function loadSimulations() {
             try {
@@ -90,7 +84,7 @@ export default function Profile() {
                             {simulations.map((sim) => (
                                 <div key={sim.simulationId} className="bg-white rounded-xl p-5 shadow-sm border">
                                     <button
-                                        
+
                                         style={{
                                             background: "none",
                                             border: "none",
@@ -99,9 +93,9 @@ export default function Profile() {
                                         }}
                                         aria-label="Delete"
                                     >
-                                        <Trash2 size={24} 
-                                        className="stroke-[#021746] hover:stroke-blue-600 transition-transform duration-200 transform hover:scale-110 cursor-pointer"
-                                        strokeWidth={2} />                                    </button>
+                                        <Trash2 size={24}
+                                            className="stroke-[#021746] hover:stroke-blue-600 transition-transform duration-200 transform hover:scale-110 cursor-pointer"
+                                            strokeWidth={2} />                                    </button>
                                     <h4 className="font-semibold text-gray-900 mb-1">
                                         {sim.visaType}
                                     </h4>

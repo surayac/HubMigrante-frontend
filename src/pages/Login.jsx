@@ -5,7 +5,7 @@ import MyToast from "../components/MyToast";
 import { useAuth } from "../context/AuthContext";
 
 function Login() {
-    const {login} = useAuth();
+    const { login } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -72,7 +72,6 @@ function Login() {
                         placeholder="Enter your email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        required
                     />
                 </div>
 
@@ -86,7 +85,6 @@ function Login() {
                         placeholder="Enter your password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        required
                     />
                 </div>
                 <section className="flex justify-between mt-4 gap-4">
@@ -96,14 +94,15 @@ function Login() {
                     >
                         Login
                     </button>
-                    <a
-                        href="/register"
-                        className="flex-1 text-center bg-gray-300 text-gray-800 font-semibold py-2 rounded-lg hover:bg-gray-400 transition"
-                        aria-label="Go to registration page"
-                    >
-                        Register
-                    </a>
                 </section>
+
+                <p className="text-center">
+                    Don't have an account? <a
+                        href="/register"
+                        className="text-gray-800 font-semibold py-2 hover:text-[#4C92E7] transition cursor-pointer"
+                    >
+                        Click to register
+                    </a> </p>
 
             </form>
         </div>
