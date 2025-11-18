@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import api from "../services/ApiUser";
+import { Trash2 } from "lucide-react";
+
 
 export default function Profile() {
 
@@ -28,11 +30,11 @@ export default function Profile() {
             }
         }
 
-      //  loadUser();
-   // }, [token]);
+        //  loadUser();
+        // }, [token]);
 
-   // useEffect(() => {
-      //  if (!user) return;
+        // useEffect(() => {
+        //  if (!user) return;
 
         async function loadSimulations() {
             try {
@@ -47,7 +49,7 @@ export default function Profile() {
 
         loadUser();
         loadSimulations();
-      
+
     }, [token]);
 
     if (!token) return <p className="text-center mt-10">You are not logged in.</p>;
@@ -87,6 +89,19 @@ export default function Profile() {
                         <div className="mt-6 grid md:grid-cols-2 gap-6 w-full">
                             {simulations.map((sim) => (
                                 <div key={sim.simulationId} className="bg-white rounded-xl p-5 shadow-sm border">
+                                    <button
+                                        
+                                        style={{
+                                            background: "none",
+                                            border: "none",
+                                            cursor: "pointer",
+                                            padding: "8px",
+                                        }}
+                                        aria-label="Delete"
+                                    >
+                                        <Trash2 size={24} 
+                                        className="stroke-[#021746] hover:stroke-blue-600 transition-transform duration-200 transform hover:scale-110 cursor-pointer"
+                                        strokeWidth={2} />                                    </button>
                                     <h4 className="font-semibold text-gray-900 mb-1">
                                         {sim.visaType}
                                     </h4>
