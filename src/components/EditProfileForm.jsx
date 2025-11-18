@@ -1,5 +1,5 @@
 import { useState } from "react";
-import api from "../services/ApiUser";
+import { updateMyUser } from "../services/UserService";
 
 export default function EditProfileForm({ user, onClose }) {
 
@@ -9,7 +9,7 @@ export default function EditProfileForm({ user, onClose }) {
 
     const handleSubmit = async () => {
         try {
-            await api.put("/api/v1/users/me", {
+            await updateMyUser({
                 name,
                 email,
                 password: password || null
