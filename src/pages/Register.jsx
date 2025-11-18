@@ -24,6 +24,21 @@ function Register() {
             }, 1500);
 
         } catch (err) {
+
+            if (err.response && err.response.data) {
+
+                // Caso o backend mande uma lista de erros
+                if (Array.isArray(err.response.data.errors)) {
+                    err.response.data.errors.forEach(msg => toast.error(msg));
+                    return;
+                }
+
+                // Caso mande mensagem única
+                if (err.response.data.message) {
+                    toast.error(err.response.data.message);
+                    return;
+                }
+            }
             toast.error("Error creating account. Please try again.");
         }
     };
@@ -52,7 +67,6 @@ function Register() {
                         placeholder="Enter your name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        required
                     />
                 </section>
 
@@ -66,7 +80,6 @@ function Register() {
                         placeholder="Enter your email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        required
                     />
                 </section>
 
@@ -80,7 +93,6 @@ function Register() {
                         placeholder="Create a password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        required
                     />
                 </section>
 
