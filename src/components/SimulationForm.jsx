@@ -51,11 +51,6 @@ export default function SimulationForm({ onClose, onSuccess }) {
 
             const backend = err.response?.data;
 
-            /** Backend returns:
-             * { errors: ["Field X is mandatory"] }
-             * OR { message: "Password must be at most 8 characters" }
-             */
-
             if (backend?.errors) {
                 const mapped = {};
                 backend.errors.forEach(msg => {
@@ -90,7 +85,7 @@ export default function SimulationForm({ onClose, onSuccess }) {
 
     return (
         <section
-            className="w-full bg-white rounded-2xl p-6 shadow-md border max-w-xl mx-auto"
+            className="w-full bg-white max-w-xl mx-auto"
             aria-labelledby="simulation-form-title"
         >
             <h2
