@@ -35,16 +35,7 @@ export default function SimulationForm({ onClose, onSuccess }) {
 
             const result = await createSimulation(payload);
 
-            toast.custom(
-                <MyToast
-                    title="Simulation created!"
-                    message={result.message || "Your simulation was saved successfully."}
-                    type="success"
-                />
-            );
-
-            if (onSuccess) onSuccess(result);
-            onClose();
+            onSuccess(result);
 
         } catch (err) {
             console.error("Simulation error:", err);
