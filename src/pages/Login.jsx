@@ -50,10 +50,10 @@ function Login() {
     };
 
     return (
-        <div className="flex justify-center items-center h-screen bg-gray-100">
+        <div className="flex justify-center px-4 items-center min-h-screen bg-gray-100">
             <form
                 onSubmit={handleSubmit}
-                className="bg-white p-8 rounded-xl shadow-lg w-96 space-y-5"
+                className="bg-white p-5 rounded-xl shadow-lg w-96 space-y-5"
                 aria-labelledby="login-title"
             >
                 <h2

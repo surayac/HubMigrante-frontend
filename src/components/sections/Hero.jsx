@@ -10,7 +10,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative w-full min-h-screen text-gray-900 pt-[10px] flex flex-col items-center justify-center"
+      className="relative w-full min-h-screen text-gray-900 md: pt-14 flex flex-col items-center justify-center"
       role="region"
       aria-labelledby="hero-heading"
     >
@@ -43,7 +43,7 @@ export default function Hero() {
           hover:scale-105 filter grayscale hover:grayscale-0 cursor-pointer"        />
       </section>
 
-      <section className="w-full bg-gray-200/70 text-center py-8 flex flex-col items-center justify-center">
+      <section className="w-full bg-gray-200/70 text-center py-6 px-4 flex flex-col items-center justify-center">
         <p className="text-xl font-bold">
           Plan your move. Simplify your journey.
         </p>
@@ -59,7 +59,7 @@ export default function Hero() {
                      font-semibold text-lg text-white shadow-md transition-all duration-300 ease-out
                      hover:bg-gray-800 hover:shadow-2xl hover:-translate-y-1 hover:scale-105
                      focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-gray-400/60 focus-visible:ring-offset-2
-                     active:scale-100 active:translate-y-0 cursor-pointer"
+                     active:scale-100 active:translate-y-0 cursor-pointer mb-15"
           aria-label="Start"
         >
           <span>Start</span>
