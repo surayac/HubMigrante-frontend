@@ -25,7 +25,7 @@ export default function DeleteAccountButton() {
             );
 
             setTimeout(() => {
-              window.location.href = "/register";
+              window.location.href = "/";
             }, 1200);
 
           } catch (err) {
