@@ -3,6 +3,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Profile from "../pages/Profile";
+import SimulationForm from "../components/SimulationForm";
 
 export default function AppRouter() {
   return (
@@ -11,7 +12,7 @@ export default function AppRouter() {
       <Route path="/login" element={<Login />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/register" element={<Register />} />
-      
+      <Route path="/simulation" element={<SimulationForm />} />
     </Routes>
   );
 }
