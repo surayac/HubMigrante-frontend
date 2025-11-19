@@ -90,7 +90,7 @@ export default function Profile() {
           onEdit={() => setEditing(true)}
           onLogout={() => {
             logout();
-            window.location.href = "/login";
+            window.location.href = "/";
           }}
         />
 
