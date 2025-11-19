@@ -192,7 +192,7 @@ export default function SimulationForm({ onClose, onSuccess }) {
 
                     <button
                         type="submit"
-                        className="bg-gray-900 text-white px-6 py-2 rounded-xl hover:bg-gray-800 cursor-pointer"
+                        className="bg-gray-900 text-white px-6 py-2 rounded-xl hover:bg-gray-600 cursor-pointer"
                     >
                         Save Simulation
                     </button>
