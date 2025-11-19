@@ -17,7 +17,7 @@ export default function SimulationForm({ onClose, onSuccess }) {
 
     const handleChange = (field, value) => {
         setForm({ ...form, [field]: value });
-        setErrors({ ...errors, [field]: null }); // limpa erro local
+        setErrors({ ...errors, [field]: null });
     };
 
     const handleSubmit = async (e) => {
@@ -102,7 +102,6 @@ export default function SimulationForm({ onClose, onSuccess }) {
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
 
-                {/* overEighteen */}
                 <div>
                     <label className="block text-sm font-medium mb-1">
                         Are you over 18?
@@ -123,7 +122,6 @@ export default function SimulationForm({ onClose, onSuccess }) {
                     )}
                 </div>
 
-                {/* hasJobOffer */}
                 <div>
                     <label className="block text-sm font-medium mb-1">
                         Do you have a job offer?
@@ -144,7 +142,6 @@ export default function SimulationForm({ onClose, onSuccess }) {
                     )}
                 </div>
 
-                {/* worksRemotely */}
                 <div>
                     <label className="block text-sm font-medium mb-1">
                         Do you work remotely?
@@ -165,7 +162,6 @@ export default function SimulationForm({ onClose, onSuccess }) {
                     )}
                 </div>
 
-                {/* enrollmentConfirmed */}
                 <div>
                     <label className="block text-sm font-medium mb-1">
                         Is your enrollment confirmed?
@@ -186,7 +182,6 @@ export default function SimulationForm({ onClose, onSuccess }) {
                     )}
                 </div>
 
-                {/* montlyIncome */}
                 <div>
                     <label className="block text-sm font-medium mb-1">
                         Monthly Income
