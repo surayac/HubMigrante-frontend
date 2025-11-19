@@ -88,13 +88,6 @@ export default function SimulationForm({ onClose, onSuccess }) {
             className="w-full bg-white max-w-xl mx-auto"
             aria-labelledby="simulation-form-title"
         >
-            <h2
-                id="simulation-form-title"
-                className="text-2xl font-bold text-center mb-4"
-            >
-                Create Simulation
-            </h2>
-
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
 
                 <div>
