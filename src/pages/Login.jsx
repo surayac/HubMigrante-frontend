@@ -3,8 +3,10 @@ import api from "../services/ApiUser";
 import toast from "react-hot-toast";
 import MyToast from "../components/toasts/MyToast";
 import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+    const navigate = useNavigate();
     const { login } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -32,7 +34,7 @@ function Login() {
             );
 
             setTimeout(() => {
-                window.location.href = "/profile";
+                navigate("/profile");
             }, 1200);
 
 
