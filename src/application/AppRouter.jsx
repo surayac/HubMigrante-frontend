@@ -13,16 +13,14 @@ export default function AppRouter() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
-      <Route path="/profile"
-        element={
+      <Route path="/profile" element={
           <PrivateRoute>
             <Profile />
           </PrivateRoute>
         }
       />
 
-      <Route path="/simulation"
-        element={
+      <Route path="/simulation" element={
           <PrivateRoute>
             <CreateSimulation />
           </PrivateRoute>
