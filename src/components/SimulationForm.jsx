@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createSimulation } from "../services/SimulationService";
 import toast from "react-hot-toast";
-import MyToast from "../components/MyToast";
+import MyToast from "./toasts/MyToast";
 
 export default function SimulationForm({ onClose, onSuccess }) {
 

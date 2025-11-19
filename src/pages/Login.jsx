@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import api from "../services/ApiUser";
 import toast from "react-hot-toast";
-import MyToast from "../components/MyToast";
+import MyToast from "../components/toasts/MyToast";
 import { useAuth } from "../context/AuthContext";
 
 function Login() {

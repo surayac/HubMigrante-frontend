@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { updateMyUser } from "../services/UserService";
 import toast from "react-hot-toast";
-import MyToast from "./MyToast";
+import MyToast from "./toasts/MyToast";
 
 export default function EditProfileForm({ user, onClose }) {
 
