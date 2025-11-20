@@ -1,8 +1,18 @@
 import React from "react";
 import { X } from "lucide-react";
 import toast from "react-hot-toast";
+import { useEffect } from "react";
 
-function MyToast({ title, message, type = "success" }) {
+function MyToast({ title, message, type = "success", duration = 1000  }) {
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      toast.dismiss();
+    }, duration);
+
+    return () => clearTimeout(timer);
+  }, [duration]);
+  
   return (
     <div
       className={`
