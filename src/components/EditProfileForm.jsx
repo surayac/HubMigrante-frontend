@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import MyToast from "./toasts/MyToast";
 import { useNavigate } from "react-router-dom";
 
-export default function EditProfileForm({ user, onClose }) {
+export default function EditProfileForm({ user, onClose, onSuccess = () => {} }) {
     const navigate = useNavigate();
 
     const [name, setName] = useState(user?.name || "");
@@ -13,7 +13,7 @@ export default function EditProfileForm({ user, onClose }) {
 
     const handleSubmit = async () => {
         try {
-            await updateMyUser({
+            const updatedUser = await updateMyUser({
                 name,
                 email,
                 password: password || null
@@ -26,9 +26,9 @@ export default function EditProfileForm({ user, onClose }) {
                     type="success"
                 />
             );
-
+            onSuccess(updatedUser);
             onClose();
-            navigate("/profile", { replace: true });
+           // navigate("/profile", { replace: true });
         } catch (err) {
             console.error("Error updating profile:", err);
             toast.custom(
