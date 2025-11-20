@@ -27,7 +27,7 @@ Powered by a secure **Spring Boot + PostgreSQL** backend with **JWT authenticati
 | **Version Control** | Git + GitHub |
 | **Project Management** | Trello |
 
-### 🧩 Desglose técnico
+### 🧩 Technical Overview
 
 **Frontend Core:** SPA built with **React 19 and Vite 7**
 
