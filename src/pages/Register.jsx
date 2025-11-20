@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import api from "../services/ApiUser";
+import { registerUser } from "../services/UserService";
 import toast from "react-hot-toast";
 
 function Register() {
@@ -11,7 +12,7 @@ function Register() {
         e.preventDefault();
 
         try {
-            await api.post("/api/v1/users", {
+            await registerUser({
                 name,
                 email,
                 password,
@@ -26,7 +27,7 @@ function Register() {
         } catch (err) {
 
             if (err.response && err.response.data) {
-                
+
                 if (Array.isArray(err.response.data.errors)) {
                     err.response.data.errors.forEach(msg => toast.error(msg));
                     return;

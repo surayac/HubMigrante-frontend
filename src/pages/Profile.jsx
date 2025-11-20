@@ -6,7 +6,7 @@ import SimulationList from "../components/SimulationList";
 import toast from "react-hot-toast";
 import MyToast from "../components/toasts/MyToast";
 import ConfirmToast from "../components/toasts/ConfirmToast";
-import { deleteSimulation } from "../services/SimulationService";
+import { getMySimulations, deleteSimulation } from "../services/SimulationService";
 import { getMyUser } from "../services/UserService";
 import api from "../services/ApiUser";
 import { useNavigate } from "react-router-dom";
