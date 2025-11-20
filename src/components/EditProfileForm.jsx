@@ -74,10 +74,10 @@ export default function EditProfileForm({ user, onClose }) {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="New Password (optional)"
+                    placeholder="New Password"
                 />
 
-                <div className="flex gap-4 mt-4 justify-center">
+                <section className="flex gap-4 mt-4 justify-center">
                     <button
                         onClick={handleSubmit}
                         className="bg-gray-900 text-white px-6 py-2 rounded-xl hover:bg-gray-800 cursor-pointer"
@@ -91,8 +91,7 @@ export default function EditProfileForm({ user, onClose }) {
                     >
                         Cancel
                     </button>
-                </div>
-
+                </section>
             </section>
         </section>
     );

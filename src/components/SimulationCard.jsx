@@ -2,7 +2,7 @@ import { Trash2 } from "lucide-react";
 
 export default function SimulationCard({ simulation, onDelete, deleting }) {
   return (
-    <div className="bg-white rounded-xl p-5 shadow-sm border relative">
+    <section className="bg-white rounded-xl p-5 shadow-sm border relative">
 
       <button
         onClick={onDelete}
@@ -29,6 +29,6 @@ export default function SimulationCard({ simulation, onDelete, deleting }) {
           {simulation.message}
         </p>
       )}
-    </div>
+    </section>
   );
 }

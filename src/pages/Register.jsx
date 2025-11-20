@@ -26,14 +26,12 @@ function Register() {
         } catch (err) {
 
             if (err.response && err.response.data) {
-
-                // Caso o backend mande uma lista de erros
+                
                 if (Array.isArray(err.response.data.errors)) {
                     err.response.data.errors.forEach(msg => toast.error(msg));
                     return;
                 }
 
-                // Caso mande mensagem única
                 if (err.response.data.message) {
                     toast.error(err.response.data.message);
                     return;
@@ -107,12 +105,12 @@ function Register() {
 
                 </section>
                 <section className="text-center">
-                Already have an account? <a
-                    href="/login"
-                    className="text-gray-800 font-semibold py-2 hover:text-[#4C92E7] transition cursor-pointer"
-                >
-                    Click to login
-                </a> </section>
+                    Already have an account? <a
+                        href="/login"
+                        className="text-gray-800 font-semibold py-2 hover:text-[#4C92E7] transition cursor-pointer"
+                    >
+                        Click to login
+                    </a> </section>
 
             </form>
 

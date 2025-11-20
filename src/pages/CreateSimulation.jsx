@@ -15,7 +15,7 @@ export default function CreateSimulation() {
 
                 <button
                     onClick={() => navigate("/profile")}
-                    className="flex items-center gap-2 text-gray-700 hover:text-gray-900 mb-6"
+                    className="flex items-center gap-2 text-gray-700 hover:text-gray-900 mb-6 cursor-pointer"
                 >
                     <ArrowLeft size={20} />
                     Back to Profile

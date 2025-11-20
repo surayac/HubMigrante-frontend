@@ -4,8 +4,8 @@ export default function ResultModal({ open, onClose, data }) {
     if (!open) return null;
 
     return (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-center px-4 z-50">
-            <div className="bg-white rounded-2xl shadow-lg max-w-lg w-full p-6 relative">
+        <section className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-center px-4 z-50">
+            <section className="bg-white rounded-2xl shadow-lg max-w-lg w-full p-6 relative">
 
                 <button
                     onClick={onClose}
@@ -18,7 +18,7 @@ export default function ResultModal({ open, onClose, data }) {
                     Simulation Result
                 </h2>
 
-                <div className="text-center">
+                <section className="text-center">
                     <p className="text-lg font-semibold text-gray-800">
                         Visa type: <span className="text-blue-700">{data.visaType}</span>
                     </p>
@@ -26,7 +26,7 @@ export default function ResultModal({ open, onClose, data }) {
                     <p className="mt-3 text-gray-700 leading-relaxed">
                         {data.message}
                     </p>
-                </div>
+                </section>
 
                 <button
                     onClick={onClose}
@@ -34,7 +34,7 @@ export default function ResultModal({ open, onClose, data }) {
                 >
                     Close
                 </button>
-            </div>
-        </div>
+            </section>
+        </section>
     );
 }

@@ -71,8 +71,7 @@ export default function SimulationForm({ onClose, onSuccess }) {
                     />
                 );
             }
-        }
-    };
+        }    };
 
     return (
         <section
@@ -81,12 +80,14 @@ export default function SimulationForm({ onClose, onSuccess }) {
         >
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
 
-                <div>
-                    <label className="block text-sm font-medium mb-1">
+                <section>
+                    <label htmlFor="overEighteen" className="block text-sm font-medium mb-1">
                         Are you over 18?
                     </label>
 
                     <select
+                        id="overEighteen"
+                        aria-required="true"
                         value={form.overEighteen}
                         onChange={(e) => handleChange("overEighteen", e.target.value)}
                         className="border rounded-lg px-3 py-2 w-full"
@@ -99,14 +100,16 @@ export default function SimulationForm({ onClose, onSuccess }) {
                     {errors.overEighteen && (
                         <p className="text-red-500 text-sm mt-1">{errors.overEighteen}</p>
                     )}
-                </div>
+                </section>
 
-                <div>
-                    <label className="block text-sm font-medium mb-1">
+                <section>
+                    <label htmlFor="hasJobOffer" className="block text-sm font-medium mb-1">
                         Do you have a job offer?
                     </label>
 
                     <select
+                        id="hasJobOffer"
+                        aria-required="true"
                         value={form.hasJobOffer}
                         onChange={(e) => handleChange("hasJobOffer", e.target.value)}
                         className="border rounded-lg px-3 py-2 w-full"
@@ -119,14 +122,16 @@ export default function SimulationForm({ onClose, onSuccess }) {
                     {errors.hasJobOffer && (
                         <p className="text-red-500 text-sm mt-1">{errors.hasJobOffer}</p>
                     )}
-                </div>
+                </section>
 
-                <div>
-                    <label className="block text-sm font-medium mb-1">
+                <section>
+                    <label htmlFor="worksRemotely" className="block text-sm font-medium mb-1">
                         Do you work remotely?
                     </label>
 
                     <select
+                        id="worksRemotely"
+                        aria-required="true"
                         value={form.worksRemotely}
                         onChange={(e) => handleChange("worksRemotely", e.target.value)}
                         className="border rounded-lg px-3 py-2 w-full"
@@ -139,14 +144,16 @@ export default function SimulationForm({ onClose, onSuccess }) {
                     {errors.worksRemotely && (
                         <p className="text-red-500 text-sm mt-1">{errors.worksRemotely}</p>
                     )}
-                </div>
+                </section>
 
-                <div>
-                    <label className="block text-sm font-medium mb-1">
+                <section>
+                    <label htmlFor="enrollmentConfirmed" className="block text-sm font-medium mb-1">
                         Is your enrollment confirmed?
                     </label>
 
                     <select
+                        id="enrollmentConfirmed"
+                        aria-required="true"
                         value={form.enrollmentConfirmed}
                         onChange={(e) => handleChange("enrollmentConfirmed", e.target.value)}
                         className="border rounded-lg px-3 py-2 w-full"
@@ -159,14 +166,16 @@ export default function SimulationForm({ onClose, onSuccess }) {
                     {errors.enrollmentConfirmed && (
                         <p className="text-red-500 text-sm mt-1">{errors.enrollmentConfirmed}</p>
                     )}
-                </div>
+                </section>
 
-                <div>
-                    <label className="block text-sm font-medium mb-1">
+                <section>
+                    <label htmlFor="monthlyIncome" className="block text-sm font-medium mb-1">
                         Monthly Income
                     </label>
 
                     <input
+                        id="monthlyIncome"
+                        aria-required="true"
                         type="text"
                         value={form.montlyIncome}
                         onChange={(e) => handleChange("montlyIncome", e.target.value)}
@@ -177,9 +186,9 @@ export default function SimulationForm({ onClose, onSuccess }) {
                     {errors.montlyIncome && (
                         <p className="text-red-500 text-sm mt-1">{errors.montlyIncome}</p>
                     )}
-                </div>
+                </section>
 
-                <div className="flex justify-center gap-4 mt-6">
+                <section className="flex justify-center gap-4 mt-6">
 
                     <button
                         type="submit"
@@ -195,7 +204,7 @@ export default function SimulationForm({ onClose, onSuccess }) {
                     >
                         Cancel
                     </button>
-                </div>
+                </section>
             </form>
         </section>
     );
