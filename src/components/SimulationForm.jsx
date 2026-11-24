@@ -25,11 +25,13 @@ export default function SimulationForm({ onClose, onSuccess }) {
         setErrors({});
 
         try {
+            const toBoolean = (value) => (value === "" ? null : value === "true");
+
             const payload = {
-                overEighteen: form.overEighteen === "true",
-                hasJobOffer: form.hasJobOffer === "true",
-                worksRemotely: form.worksRemotely === "true",
-                enrollmentConfirmed: form.enrollmentConfirmed === "true",
+                overEighteen: toBoolean(form.overEighteen),
+                hasJobOffer: toBoolean(form.hasJobOffer),
+                worksRemotely: toBoolean(form.worksRemotely),
+                enrollmentConfirmed: toBoolean(form.enrollmentConfirmed),
                 montlyIncome: form.montlyIncome
             };
 
