@@ -85,6 +85,27 @@ describe("SimulationForm", () => {
         expect(errorMsg).toBeInTheDocument();
     });
 
+    it("sends unanswered questions as null instead of false", async () => {
+        createSimulation.mockResolvedValue({});
+
+        render(<SimulationForm onClose={onCloseMock} onSuccess={onSuccessMock} />);
+
+        fireEvent.change(screen.getByPlaceholderText("Example: 3000"), {
+            target: { value: "4000" },
+        });
+        fireEvent.click(screen.getByRole("button", { name: "Save Simulation" }));
+
+        await waitFor(() => {
+            expect(createSimulation).toHaveBeenCalledWith({
+                overEighteen: null,
+                hasJobOffer: null,
+                worksRemotely: null,
+                enrollmentConfirmed: null,
+                montlyIncome: "4000",
+            });
+        });
+    });
+
     it("calls onClose when Cancel is clicked", () => {
         render(<SimulationForm onClose={onCloseMock} onSuccess={onSuccessMock} />);
 
